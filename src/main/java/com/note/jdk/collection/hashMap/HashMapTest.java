@@ -14,9 +14,11 @@ public class HashMapTest {
 
 
     @Test
-    public void newHashMapTest(){
+    public void keySetTest(){
         HashMap map = new HashMap(17);
         map.put(1,"123");
         System.out.println(JSON.toJSONString(map.keySet()));
     }
+
+
 }
