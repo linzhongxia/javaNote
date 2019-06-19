@@ -13,6 +13,9 @@ import java.util.Map;
 public class HashMapTest {
 
 
+    /**
+     * 如果初始化容量了，那么阀值是初始化容量向上取2的N次方的值
+     */
     @Test
     public void keySetTest(){
         HashMap map = new HashMap(17);

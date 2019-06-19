@@ -1,29 +1,29 @@
 
-    /**
-     * Transfers all entries from current table to newTable.
-     */
-    void transfer(Entry[] newTable, boolean rehash) {
-        int newCapacity = newTable.length;
-        for (Entry<K,V> e : table) {
-            while(null != e) {
-                Entry<K,V> next = e.next;
-                if (rehash) {
-                    e.hash = null == e.key ? 0 : hash(e.key);
+        /**
+         * Transfers all entries from current table to newTable.
+         */
+        void transfer(Entry[] newTable, boolean rehash) {
+            int newCapacity = newTable.length;
+            for (Entry<K,V> e : table) {
+                while(null != e) {
+                    Entry<K,V> next = e.next;
+                    if (rehash) {
+                        e.hash = null == e.key ? 0 : hash(e.key);
+                    }
+                    int i = indexFor(e.hash, newCapacity);
+                    e.next = newTable[i];
+                    newTable[i] = e;
+                    e = next;
                 }
-                int i = indexFor(e.hash, newCapacity);
-                e.next = newTable[i];
-                newTable[i] = e;
-                e = next;
             }
         }
-    }
     
 - JDK1.7 resize是头插的方式 e.next = newTable[i]；原entry是从头部遍历复制到新的entry数组中。
 - JDK1.7 A、B线程同时出发resize()方法，A线程执行到 Entry<K,V> next = e.next;CPU线程切换，B线程复制resize完成后，切换回A线程，由于线程B已经执行完毕，因此根据Java内存模型（JMM），现在table里面所有的Entry都是最新的。
  [详细可参考](http://www.importnew.com/25070.html)
 
 
-        final Node<K,V>[] resize() {
+      final Node<K,V>[] resize() {
             Node<K,V>[] oldTab = table;
             int oldCap = (oldTab == null) ? 0 : oldTab.length;
             int oldThr = threshold;
@@ -112,3 +112,7 @@
 - JDK1.8 HashMap底层实现加入红黑树，调高效率；
 - JDK1.8 resize操作也发生了变化，主要是数组拆分到低位和高位数组的过程[可以参考jdk1.8 HashMap resize方法解析](https://www.jianshu.com/p/bdfe7ddd8f81)
 底层数据迁移过程可参考 [底层数据迁移过程可参考 [https://www.cnblogs.com/pzx-java/p/9135341.html](https://www.cnblogs.com/pzx-java/p/9135341.html)
+- JDK1.8 [详细代码块分析](https://blog.csdn.net/v123411739/article/details/78996181)
+- JDK1.8 HashMap [线程不安全](https://blog.csdn.net/LovePluto/article/details/79712473)
+
+**红黑树代码**
