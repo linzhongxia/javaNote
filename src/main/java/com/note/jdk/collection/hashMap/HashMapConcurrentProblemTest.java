@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author linzhongxia CMO体系-无界零售赋能事业部-商家研发部-商家营销部
  * @date 2019-06-12
  */
-public class HashMapConcurrentProblem extends Thread{
+public class HashMapConcurrentProblemTest extends Thread{
 
     private static Map<Integer, Integer> map = new HashMap<Integer, Integer>();
     private static AtomicInteger at = new AtomicInteger(0);
@@ -29,7 +29,7 @@ public class HashMapConcurrentProblem extends Thread{
 
 //    public static void main(String[] args) {
 //        for(int i=0;i<10;i++){
-//            Thread thread = new HashMapConcurrentProblem();
+//            Thread thread = new HashMapConcurrentProblemTest();
 //            thread.start();
 //        }
 //    }
