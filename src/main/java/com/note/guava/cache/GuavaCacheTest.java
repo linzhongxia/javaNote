@@ -11,9 +11,29 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @link https://www.cnblogs.com/vikde/p/8045226.html
+ * https://blog.csdn.net/Kincym/article/details/84072648#LoadingCache_1   Guava---最全缓存cache讲解
  * Created by Co on 2019/6/13.
  */
 public class GuavaCacheTest {
+
+    /**
+     * 参考：https://segmentfault.com/a/1190000007300118
+     * https://www.cnblogs.com/vikde/p/8045226.html
+     * https://blog.csdn.net/Kincym/article/details/84072648#LoadingCache_1   Guava---最全缓存cache讲解
+     *
+     * guava cache 不能load null
+     * 1. 行参、实参区别
+     * 2. https://www.jianshu.com/p/15d0a9ce37dd 和guava cache的 区别
+     * 3. delayqueue 的原理和应用
+     * 4. 为什么不能为NULL对象做缓存
+     * 5. guava cache 队列的应用
+     * 6. guava cache 删除策略是怎么运行的
+     */
+    public void test(){
+
+    }
+
+
     public static void main(String[] args) throws Exception {
         LoadingCache<Integer, String> cache = CacheBuilder.newBuilder()
                 //设置并发级别为8，并发级别是指可以同时写缓存的线程数
@@ -37,33 +57,37 @@ public class GuavaCacheTest {
                 //build方法中可以指定CacheLoader，在缓存不存在时通过CacheLoader的实现自动加载缓存
                 .build(new DemoCacheLoader());
 
-        //模拟线程并发
-        new Thread(() -> {
-            //非线程安全的时间格式化工具
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-            try {
-                for (int i = 0; i < 15; i++) {
-                    String value = cache.get(1);
-                    System.out.println(Thread.currentThread().getName() + " " + simpleDateFormat.format(new Date()) + " " + value);
-                    TimeUnit.SECONDS.sleep(3);
-                }
-            } catch (Exception ignored) {
-            }
-        }).start();
+        cache.get(123);
 
-        new Thread(() -> {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-            try {
-                for (int i = 0; i < 10; i++) {
-                    String value = cache.get(1);
-                    System.out.println(Thread.currentThread().getName() + " " + simpleDateFormat.format(new Date()) + " " + value);
-                    TimeUnit.SECONDS.sleep(5);
-                }
-            } catch (Exception ignored) {
-            }
-        }).start();
-        //缓存状态查看
-        System.out.println(cache.stats().toString());
+
+
+//        //模拟线程并发
+//        new Thread(() -> {
+//            //非线程安全的时间格式化工具
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+//            try {
+//                for (int i = 0; i < 15; i++) {
+//                    String value = cache.get(1);
+//                    System.out.println(Thread.currentThread().getName() + " " + simpleDateFormat.format(new Date()) + " " + value);
+//                    TimeUnit.SECONDS.sleep(3);
+//                }
+//            } catch (Exception ignored) {
+//            }
+//        }).start();
+//
+//        new Thread(() -> {
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+//            try {
+//                for (int i = 0; i < 10; i++) {
+//                    String value = cache.get(1);
+//                    System.out.println(Thread.currentThread().getName() + " " + simpleDateFormat.format(new Date()) + " " + value);
+//                    TimeUnit.SECONDS.sleep(5);
+//                }
+//            } catch (Exception ignored) {
+//            }
+//        }).start();
+//        //缓存状态查看
+//        System.out.println(cache.stats().toString());
     }
 
     /**
@@ -72,11 +96,12 @@ public class GuavaCacheTest {
     public static class DemoCacheLoader extends CacheLoader<Integer, String> {
         @Override
         public String load(Integer key) throws Exception {
-            System.out.println(Thread.currentThread().getName() + " 加载数据开始");
-            TimeUnit.SECONDS.sleep(8);
-            Random random = new Random();
-            System.out.println(Thread.currentThread().getName() + " 加载数据结束");
-            return "value:" + random.nextInt(10000);
+//            System.out.println(Thread.currentThread().getName() + " 加载数据开始");
+//            TimeUnit.SECONDS.sleep(8);
+//            Random random = new Random();
+//            System.out.println(Thread.currentThread().getName() + " 加载数据结束");
+//            return "value:" + random.nextInt(10000);
+            return null;
         }
     }
 }
