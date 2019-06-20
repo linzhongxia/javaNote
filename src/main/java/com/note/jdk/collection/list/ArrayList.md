@@ -16,3 +16,4 @@
                  // 并将elementData的数据复制到新的内存空间
                  elementData = Arrays.copyOf(elementData, newCapacity);
         }
+  

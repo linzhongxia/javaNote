@@ -2,6 +2,9 @@ package com.note.jdk.collection.list;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * private static final int DEFAULT_CAPACITY = 10; // 初始容量10
  * <p>
@@ -19,7 +22,7 @@ public class ArrayListTest {
 
     @Test
     public void test() {
-
+        List<String> list = new ArrayList<String>();
 
     }
 }
