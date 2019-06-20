@@ -1,4 +1,4 @@
-package com.note.jdk.collection.arrayList;
+package com.note.jdk.collection.list;
 
 import org.junit.Test;
 

@@ -1,10 +1,9 @@
-package com.note.jdk.collection.hashMap;
+package com.note.jdk.collection.map;
 
 import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author linzhongxia CMO体系-无界零售赋能事业部-商家研发部-商家营销部

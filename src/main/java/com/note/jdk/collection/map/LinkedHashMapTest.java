@@ -1,4 +1,4 @@
-package com.note.jdk.collection.linkedHashMap;
+package com.note.jdk.collection.map;
 
 import org.junit.Test;
 

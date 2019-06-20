@@ -1,4 +1,4 @@
-package com.note.jdk.collection.hashMap;
+package com.note.jdk.collection.map;
 
 import java.util.HashMap;
 import java.util.Map;
