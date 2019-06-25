@@ -38,14 +38,18 @@ public class Cache<K, V> {
         Thread t = new Thread() {
             @Override
             public void run() {
-                dameonCheckOverdueKey();
+                try {
+                    dameonCheckOverdueKey();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         };
         t.setDaemon(true);
         t.start();
     }
 
-    public void dameonCheckOverdueKey() {
+    public void dameonCheckOverdueKey() throws InterruptedException {
         while (true) {
             DelayedItem<K> delayedItem = queue.poll();
             if (delayedItem != null) {

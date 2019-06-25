@@ -27,7 +27,7 @@ public class OrderTest {
             System.out.println("开启自动取消订单job,当前时间："+ LocalDateTime.now().format(formatter));
             while (testDelayQueue.isStarted == 1) {
                 try {
-                    Order order = testDelayQueue.queue.take();
+                    Order order = testDelayQueue.queue.take(); // add by lzhx take操作是阻塞的
                     order.setStatus("CANCELED");
 
                     System.out.println("订单：" + order.getOrderNo() + "付款超时，自动取消，当前时间："+ LocalDateTime.now().format(formatter));
