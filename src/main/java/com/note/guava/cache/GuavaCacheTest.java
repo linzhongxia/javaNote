@@ -3,6 +3,7 @@ package com.note.guava.cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

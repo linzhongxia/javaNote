@@ -52,6 +52,14 @@ public class Stream {
 
     }
 
+    @Test
+    public void streamTest(){
+        List<Color> colors = new ArrayList<>();
+        colors.add(new Color("red"));
+        colors.add(new Color("red"));
+
+    }
+
 
     class Color {
         private String color;

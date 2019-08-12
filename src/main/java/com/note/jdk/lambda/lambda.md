@@ -378,3 +378,10 @@ Java8中，接口声明里可以有方法实现了，叫做默认方法。在此
     Stream.generate(Math::random).limit(5).forEach(System.out::println);
 
 注意这个limit(5)，如果没有这个调用，那么这条语句会永远地执行下去。也就是说这个生成器是无穷的。这种调用叫做终结操作，或者短路（short-circuiting）操作。
+
+
+
+
+**4.5 实战经验**
+[parallelStream使用不当引发的血案](https://www.jianshu.com/p/5a49b10f3cfd)
+
