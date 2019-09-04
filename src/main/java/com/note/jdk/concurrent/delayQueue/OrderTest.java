@@ -35,7 +35,7 @@ public class OrderTest {
                     e.printStackTrace();
                 }
             }
-        });
+        },"queue-take");
         t1.start();
 
         //新建一个线程，模拟提交订单
